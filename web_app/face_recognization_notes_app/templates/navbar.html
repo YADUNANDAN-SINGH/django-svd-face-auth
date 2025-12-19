@@ -1,0 +1,39 @@
+<nav class="navbar">
+    <div class="navbar-container">
+        <a href="#" class="navbar-logo">NoteApp</a>
+        <div class="menu-icon">
+            <i class="fas fa-bars"></i>
+        </div>
+        <ul class="nav-menu">
+            <li class="nav-item">
+                <a href="/" class="nav-links">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="https://yadunandan-singh.pages.dev/" target="_blank" class="nav-links">Contact</a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+                <a href="/notes/" class="nav-links">Notes</a>
+            </li>
+            <li class="nav-item">
+                <a href="/logout" class="nav-links-mobile">Logout</a>
+            </li>
+            {% else %}
+            <li class="nav-item">
+                <a href="/login" class="nav-links-mobile">Login</a>
+            </li>
+            <li class="nav-item">
+                <a href="/signup" class="nav-links-mobile">Sign Up</a>
+            </li>
+            {% endif %}
+        </ul>
+        <div class="nav-button-container">
+            {% if user.is_authenticated %}
+            <a href="/logout" class="btn">Logout</a>
+            {% else %}
+            <a href="/login" class="btn">Login</a>
+            <a href="/signup" class="btn btn-signup">Sign Up</a>
+            {% endif %}
+        </div>
+    </div>
+</nav>

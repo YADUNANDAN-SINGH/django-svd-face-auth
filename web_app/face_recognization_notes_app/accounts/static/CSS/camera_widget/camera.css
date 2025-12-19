@@ -1,0 +1,122 @@
+.camera-container {
+    width: calc(100% - 8px);
+    height: calc(100vh - 88px);
+    /* 100vh - 80px navbar - 8px margins */
+    max-width: none;
+    margin: 4px;
+    border-radius: 4px;
+    /* Slight radius to match the margin aesthetic */
+    overflow: hidden;
+    position: relative;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    /* Subtle shadow for depth */
+}
+
+#camera-stream {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+#take-shot-btn {
+    position: absolute;
+    bottom: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 4px solid #fff;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+/* Ensure consistent button size on small screens */
+@media (max-width: 768px) {
+    .camera-container {
+        width: 85%;
+        max-width: 400px;
+        height: auto;
+        aspect-ratio: 9/16;
+        /* Portrait aspect ratio for camera */
+        margin: 2rem auto;
+        border-radius: 20px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        /* Reset height calc from desktop if needed, though aspect-ratio usually wins if height is auto */
+    }
+
+    #take-shot-btn {
+        width: 60px;
+        height: 60px;
+        bottom: 25px;
+        width: 55px;
+        /* Adjusting slightly */
+        height: 55px;
+    }
+}
+
+@media (max-width: 480px) {
+    .camera-container {
+        width: 300px;
+        /* Preserve aspect ratio and centering from larger Tablet/Mobile query */
+    }
+
+    .face-guide-box {
+        width: 220px;
+        height: 280px;
+    }
+
+    #face-warning-msg {
+        top: calc(50% - 180px);
+        /* Adjusted for smaller box height */
+        /*font-size: 1px;*/
+        width: 80%;
+    }
+}
+
+.face-guide-box {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 250px;
+    height: 320px;
+    border: 3px solid #00ff00;
+    border-radius: 20px;
+    pointer-events: none;
+    z-index: 5;
+    box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+}
+
+#face-warning-msg {
+    position: absolute;
+    /* Position above the face guide box (approx 50% - half height of box - padding) */
+    top: calc(50% - 200px);
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #ff0000;
+    /* Solid red for better visibility */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 8px;
+    font-weight: 800;
+    /* Extra bold */
+    font-size: 1.1rem;
+    z-index: 1002;
+    /* Higher than button/video */
+    text-align: center;
+    width: auto;
+    min-width: 200px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+    /* Strong shadow */
+    border: 2px solid white;
+}
+
+.warning-hidden {
+    display: none;
+}

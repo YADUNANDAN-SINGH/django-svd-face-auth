@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Notes</title>
+    <link rel="stylesheet" href="{% static 'CSS/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'CSS/style.css' %}">
+    <style>
+        .notes-container {
+            max-width: 800px;
+            margin: 100px auto;
+            padding: 20px;
+        }
+
+        .note-form {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 30px;
+        }
+
+        .note-form input,
+        .note-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .note-form button {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .note-card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .note-date {
+            color: #666;
+            font-size: 0.8em;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    {% include 'navbar.html' %}
+
+    <div class="notes-container">
+        <div class="note-form">
+            <h2>Add New Note</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <input type="text" name="title" placeholder="Title" required>
+                <textarea name="content" rows="4" placeholder="Write your note here..." required></textarea>
+                <button type="submit">Save Note</button>
+            </form>
+        </div>
+
+        <div class="notes-list">
+            {% for note in notes %}
+            <div class="note-card">
+                <h3>{{ note.title }}</h3>
+                <div class="note-date">{{ note.created_at|date:"F j, Y, P" }}</div>
+                <p>{{ note.content }}</p>
+                <form action="{% url 'delete_note' note.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" style="background:red; margin-top:10px;">Delete</button>
+                </form>
+            </div>
+            {% empty %}
+            <p>No notes yet. Create your first one!</p>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="{% static 'JavaScript/navbar.js' %}"></script>
+</body>
+
+</html>

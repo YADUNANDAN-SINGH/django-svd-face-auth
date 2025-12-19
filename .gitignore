@@ -1,0 +1,34 @@
+# Virtual Environments
+venv/
+.venv/
+env/
+.env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+media/faces/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Byte-compiled files
+*.pyc
+
+# Model files (optional - uncomment if you don't want to track trained models)
+# math_engine/face_model.pkl

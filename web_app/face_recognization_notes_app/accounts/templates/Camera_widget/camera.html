@@ -1,0 +1,13 @@
+{% load static %}
+<link rel="stylesheet" href="{% static 'CSS/camera_widget/camera.css' %}">
+
+<div class="camera-container">
+    <video id="camera-stream" autoplay></video>
+    <div class="face-guide-box"></div>
+    <div id="face-warning-msg">
+        <p>Bring your face inside the frame</p>
+    </div>
+    <button id="take-shot-btn"></button>
+</div>
+
+<script src="{% static 'JavaScript/camera_widget/camera.js' %}?v=2"></script>
